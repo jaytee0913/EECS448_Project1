@@ -12,6 +12,7 @@ var seconds=0;
 
 //run the clock function every second.
 setInterval(clock, 1000);
+setInterval(stopwatch, 1000);
 
 //clock running functions
 /**
@@ -435,3 +436,97 @@ var flashing_text = document.getElementById("time");
 flashing_handle = setInterval(function() {
 	flashing_text.style.display = (flashing_text.style.display == 'none' ? '' : 'none');
 }, 500);
+
+var stopwatch_hour = 0;
+var stopwatch_min = 0;
+var stopwatch_sec = 0;
+function stopwatch()
+{
+	increment_stopwatch_sec()
+	
+	if((stopwatch_sec % 60) == 0)
+	{
+		increment_stopwatch_min();
+		reset_stopwatch_sec();
+	}
+	if(stopwatch_min == 60)
+	{
+		increment_stopwatch_hour();
+		reset_stopwatch_min()
+	}
+	if(stopwatch_hour == 99)
+	{
+		reset_stopwatch_hour();
+	}
+	display_stopwatch_time(stopwatch_hour, stopwatch_min, stopwatch_sec);
+}
+
+function increment_stopwatch_sec()
+{
+	stopwatch_sec++;
+}
+
+function reset_stopwatch_sec()
+{
+	stopwatch_sec = 0;
+}
+
+function increment_stopwatch_min()
+{
+	stopwatch_min++;
+}
+
+function reset_stopwatch_min()
+{
+	stopwatch_min = 0;
+}
+
+function increment_stopwatch_hour()
+{
+	stopwatch_hour++;
+}
+
+function reset_stopwatch_hour()
+{
+	stopwatch_hour = 0;
+}
+
+function display_stopwatch_time(stopwatch_hour, stopwatch_min, stopwatch_sec)
+{
+	var second_zero_display;
+	var minute_zero_display;
+	var hour_zero_display;
+	
+	if(stopwatch_sec < 10)
+	{
+		second_zero_display = "0";
+	}
+	else
+	{
+		second_zero_display = "";
+	}
+    
+	if(stopwatch_min < 10)
+	{
+		minute_zero_display = "0";
+	}
+	else
+	{
+		minute_zero_display = "";
+	}
+	
+	if(stopwatch_hour < 10)
+	{
+		hour_zero_display = "0";
+	}
+	else
+	{
+		hour_zero_display = "";
+	}
+
+	document.getElementById("stopwatch-time").innerHTML= 
+		hour_zero_display 	+ hours + ":" + 
+		minute_zero_display + minutes + ":" + 
+		second_zero_display + seconds;
+}
+

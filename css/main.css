@@ -108,4 +108,15 @@ select{
 	cursor:pointer;
 	background-color: #C0C0C0;
 }
-	
+
+div#stop_watch{
+	position: absolute;
+	width: 705px;
+	height: 150px;
+    top: 500px;
+ 	left: 0;
+}
+
+#stopwatch_time{
+	font-size: 100px;
+}
